@@ -15,12 +15,14 @@ Plug 'bkad/CamelCaseMotion'
 Plug 'fatih/vim-go'
 Plug 'flazz/vim-colorschemes'
 Plug 'jlanzarotta/bufexplorer'
+Plug 'lvht/tagbar-markdown'
 Plug 'majutsushi/tagbar'
 Plug 'pboettch/vim-cmake-syntax'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
+Plug 'udalov/kotlin-vim'
 Plug 'valloric/YouCompleteMe', { 'do': function('BuildYCM') }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -47,11 +49,13 @@ let g:ale_echo_msg_format = '[%linter%|%severity%] %s% (code)%'
 " .clang-tidy file says. Setting this to an empty list uses the file instead.
 let g:ale_cpp_clangtidy_checks = []
 
+let g:ale_python_mypy_options = '--ignore-missing-stubs pytest'
+
 " By default C++ is also linted with clangcheck, which is redundant.
 let g:ale_linters = {
 \   'cpp': ['clang', 'clangtidy'],
 \   'java': [],
-\   'python': ['pylint'],
+\   'python': ['mypy', 'pylint'],
 \}
 
 let g:ycm_filetype_blacklist = { 'java': 1 }
