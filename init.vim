@@ -11,6 +11,7 @@ function! BuildYCM(info)
 endfunction
 
 Plug 'Chiel92/vim-autoformat'
+Plug 'airblade/vim-gitgutter'
 Plug 'bkad/CamelCaseMotion'
 Plug 'fatih/vim-go'
 Plug 'flazz/vim-colorschemes'
@@ -18,6 +19,7 @@ Plug 'jlanzarotta/bufexplorer'
 Plug 'lvht/tagbar-markdown'
 Plug 'majutsushi/tagbar'
 Plug 'pboettch/vim-cmake-syntax'
+Plug 'rust-lang/rust.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-fugitive'
@@ -49,10 +51,13 @@ let g:ale_echo_msg_format = '[%linter%|%severity%] %s% (code)%'
 " .clang-tidy file says. Setting this to an empty list uses the file instead.
 let g:ale_cpp_clangtidy_checks = []
 
-let g:ale_python_mypy_options = '--ignore-missing-stubs pytest'
+let g:ale_c_parse_compile_commands = 1
+
+let g:ale_python_mypy_options = '--ignore-missing-imports'
 
 " By default C++ is also linted with clangcheck, which is redundant.
 let g:ale_linters = {
+\   'c': ['clang', 'clangtidy'],
 \   'cpp': ['clang', 'clangtidy'],
 \   'java': [],
 \   'python': ['mypy', 'pylint'],
@@ -62,6 +67,12 @@ let g:ycm_filetype_blacklist = { 'java': 1 }
 
 let g:formatdef_yapf = "'yapf -l '.a:firstline.'-'.a:lastline"
 let g:formatters_python = ['yapf']
+
+let g:formatdef_ktlint = '"ktlint --format"'
+let g:formatters_kotlin = ['ktlint']
+
+let g:rustfmt_autosave = 1
+let g:rustfmt_emit_files = 1
 
 " UI options.
 colorscheme zenburn
